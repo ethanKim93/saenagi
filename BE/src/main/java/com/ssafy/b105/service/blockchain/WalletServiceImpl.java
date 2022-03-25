@@ -4,7 +4,7 @@ import com.ssafy.b105.dto.blockchain.NewWalletDto;
 import com.ssafy.b105.entity.User;
 import com.ssafy.b105.entity.blockchain.Transaction;
 import com.ssafy.b105.entity.blockchain.Wallet;
-import com.ssafy.b105.repository.blockchain.TransactionRepository;
+import com.ssafy.b105.repository.TransactionRepository;
 import com.ssafy.b105.repository.blockchain.WalletRepository;
 import com.ssafy.b105.utils.BalanceConverter;
 import com.ssafy.b105.utils.BlockchainConnector;
