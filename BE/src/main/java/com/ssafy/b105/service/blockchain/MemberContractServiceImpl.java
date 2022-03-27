@@ -1,8 +1,6 @@
 package com.ssafy.b105.service.blockchain;
 
-import com.ssafy.b105.entity.blockchain.Wallet;
 import com.ssafy.b105.entity.common.MemberType;
-import com.ssafy.b105.repository.blockchain.TransactionRepository;
 import com.ssafy.b105.utils.BlockchainConnector;
 import java.util.concurrent.ExecutionException;
 import org.springframework.stereotype.Service;
@@ -14,21 +12,18 @@ public class MemberContractServiceImpl implements
     MemberContractService {
 
   private final BlockchainConnector connector;
-  private final TransactionRepository transactionRepository;
 
   private Member memberMgr;
 
-  public MemberContractServiceImpl(BlockchainConnector connector,
-      TransactionRepository transactionRepository) {
+  public MemberContractServiceImpl(BlockchainConnector connector) {
     this.connector = connector;
-    this.transactionRepository = transactionRepository;
     this.memberMgr = connector.getMemberMgr();
   }
 
   @Override
-  public boolean registMember(Wallet wallet, MemberType type) {
+  public boolean registMember(String account, MemberType type) {
     try {
-      TransactionReceipt receipt = memberMgr.newMember(wallet.getAccount(), type.name())
+      TransactionReceipt receipt = memberMgr.newMember(account, type.name())
           .sendAsync().get();
       System.out.println(receipt);
     } catch (InterruptedException e) {

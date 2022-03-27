@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ContractRequestDto {
 
-  private final BigInteger deadLine;
-  private final BigInteger targetAmount;
+  private final Long deadLine;
+  private final Long targetAmount;
 
 }

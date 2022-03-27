@@ -6,10 +6,12 @@ import com.ssafy.b105.entity.blockchain.Wallet;
 import com.ssafy.b105.utils.BalanceConverter;
 import com.ssafy.b105.utils.BlockchainConnector;
 import java.math.BigInteger;
+import org.springframework.stereotype.Service;
 import org.web3j.campaign.Campaign;
 import org.web3j.member.Member;
 import org.web3j.token.Token;
 
+@Service
 public class CampaignContractServiceImpl implements
     CampaignContractService {
 
