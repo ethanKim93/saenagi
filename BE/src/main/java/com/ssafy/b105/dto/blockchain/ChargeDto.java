@@ -1,5 +1,8 @@
 package com.ssafy.b105.dto.blockchain;
 
+import lombok.Getter;
+
+@Getter
 public class ChargeDto {
   private final String transactionHash;
   private final Long amount;

@@ -1,6 +1,5 @@
 package com.ssafy.b105.service.blockchain;
 
-import com.ssafy.b105.dto.blockchain.ChargeDto;
 import com.ssafy.b105.entity.User;
 import com.ssafy.b105.entity.blockchain.Wallet;
 import java.util.Optional;
@@ -13,8 +12,5 @@ public interface WalletService {
   String findAccountByUser(User user);
 
   Long findBalanceByUser(User user) throws ExecutionException, InterruptedException;
-
-  Long chargeToken(User user, Long amount)
-      throws ExecutionException, InterruptedException;
 
 }

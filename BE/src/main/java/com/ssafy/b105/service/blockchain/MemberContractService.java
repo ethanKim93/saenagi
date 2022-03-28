@@ -10,8 +10,7 @@ import com.ssafy.b105.entity.common.MemberType;
  */
 public interface MemberContractService {
 
-  boolean registMember(Wallet wallet, MemberType type);
-
+  boolean registMember(String account, MemberType type);
   boolean isTransferPossible(String from, String to);
   boolean isMember(String account);
   boolean isWithdrawalPossible(String account);

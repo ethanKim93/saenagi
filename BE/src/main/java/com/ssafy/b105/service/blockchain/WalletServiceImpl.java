@@ -62,18 +62,6 @@ public class WalletServiceImpl implements WalletService {
     return BalanceConverter.bigIntegerToLong(balance, decimals);
   }
 
-  @Override
-  public Long chargeToken(User user, Long amount)
-      throws ExecutionException, InterruptedException {
-    Wallet wallet = findByUser(user);
-    TransactionReceipt receipt = tokenMgr.chargeToken(
-            wallet.getAccount(),
-            BalanceConverter.longToBigInteger(amount, decimals))
-        .sendAsync().get();
-    Transaction save = transactionRepository.save(Transaction.from(receipt));
-    return 0L;
-  }
-
   private Wallet findByUser(User user) {
     return walletRepository.findWalletByUser(user)
         .orElseThrow(() -> new IllegalArgumentException());
