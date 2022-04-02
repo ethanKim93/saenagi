@@ -1,11 +1,19 @@
 import axios from 'axios';
 
-const api = axios.create({
+export const api = axios.create({
   // baseURL: 'http://localhost:8080/api/',
-  baseURL: 'https://84c8d203-4698-4ccf-a301-71d6e01c0494.mock.pstmn.io',
+  // baseURL: 'https://84c8d203-4698-4ccf-a301-71d6e01c0494.mock.pstmn.io',
+  baseURL: 'https://j6b105.p.ssafy.io/api/',
   // headers: {
   //   'Content-Type': 'application/json',
   // },
+});
+
+export const fileApi = axios.create({
+  baseURL: 'https://j6b105.p.ssafy.io/api/',
+  headers: {
+    'Content-Type': 'multipart/form-data',
+  },
 });
 
 api.interceptors.request.use(function (config) {
@@ -48,4 +56,4 @@ api.interceptors.response.use(
   },
 );
 
-export default api;
+export default { api, fileApi };

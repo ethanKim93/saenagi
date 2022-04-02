@@ -1,30 +1,32 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, Button, Grid} from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogTitle, Button, Grid } from '@mui/material';
 import Text from '../../atoms/Text';
 import BillTable from '../../molecules/BillTable';
 import { makeStyles } from '@mui/styles';
 import styled from '@emotion/styled';
+import PaymentAPI from '../../../../api/paymentAPI';
+import { useParams } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => {
   return {
     root: {
-      "&.MuiButton-root": {
-        border: "1px black solid",
+      '&.MuiButton-root': {
+        border: '1px black solid',
       },
-      "&.MuiDialogActions": {
-        justifyContent: "center"
-      }
+      '&.MuiDialogActions': {
+        justifyContent: 'center',
+      },
     },
     withdrawlButton: {
-      "&.MuiButton-root": {
-        border: "1px white solid",
-        "&:hover": {
-          border: "1px #f4ba34 solid"
-        }
+      '&.MuiButton-root': {
+        border: '1px white solid',
+        '&:hover': {
+          border: '1px #f4ba34 solid',
+        },
       },
     },
     withdrawlText: {
-      "&.MuiDialogTitle-root": {
-        margin: "auto",
+      '&.MuiDialogTitle-root': {
+        margin: 'auto',
       },
     },
   };
@@ -39,7 +41,7 @@ const WithdrawalButton = styled(Button)`
   color: white;
   margin: auto;
   width: 200px;
-`
+`;
 
 const CancelButton = styled(Button)`
   background-color: white;
@@ -50,7 +52,7 @@ const CancelButton = styled(Button)`
   color: black;
   margin: auto;
   width: 200px;
-`
+`;
 const AttachButton = styled(Button)`
   background-color: white;
   &:hover {
@@ -59,10 +61,22 @@ const AttachButton = styled(Button)`
   }
   color: black;
   margin: auto;
-`
+`;
 
 function WithdrawModal(props) {
   const classes = useStyles();
+  const { id } = useParams();
+
+  const attachReceipt = async () => {
+    console.log(id);
+    // await PaymentAPI.attachReceipt(campaignId, receipt)
+    //   .then((response) => {
+
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   })
+  };
 
   return (
     <div>
@@ -73,31 +87,26 @@ function WithdrawModal(props) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title" className={classes.withdrawlText}>
-          <Text className="header1" text="출금 신청하기"/>
+          <Text className="header1" text="출금 신청하기" />
         </DialogTitle>
         <DialogContent>
           <Grid container spacing={2}>
             <Grid item xs={6} md={4}>
               <img src="" alt="" />
-              <AttachButton className={classes.root} fullWidth>영수증 첨부</AttachButton>
+              <AttachButton className={classes.root} fullWidth onClick={attachReceipt}>
+                영수증 첨부
+              </AttachButton>
             </Grid>
             <Grid item xs={6} md={8}>
               <BillTable />
             </Grid>
           </Grid>
         </DialogContent>
-        <DialogActions
-          className={classes.root}
-          >
-          <WithdrawalButton
-            className={classes.withdrawlButton}
-            onClick={props.handleClose}>
+        <DialogActions className={classes.root}>
+          <WithdrawalButton className={classes.withdrawlButton} onClick={props.handleClose}>
             출금신청
           </WithdrawalButton>
-          <CancelButton
-            variant="outlined"
-            className={classes.root}
-            onClick={props.handleClose}>
+          <CancelButton variant="outlined" className={classes.root} onClick={props.handleClose}>
             취소
           </CancelButton>
         </DialogActions>
@@ -105,6 +114,5 @@ function WithdrawModal(props) {
     </div>
   );
 }
-
 
 export default WithdrawModal;

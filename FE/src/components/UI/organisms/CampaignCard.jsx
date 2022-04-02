@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Dday from '../molecules/D-Day';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -7,8 +8,13 @@ import ProgressBar from '../molecules/ProgressBar';
 import styled from '@emotion/styled';
 import Text from '../atoms/Text';
 import { Grid } from '@mui/material';
+import WithdrawModal from './Modal/WithdrawModal';
 
 function CampaignCard() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openWithdrawModal = () => {};
+
   return (
     //max min 똑같은 이유, ProgressBar에 영향을 안주기위해 고정값으로 주려고..
     <StyledCard>
@@ -44,9 +50,11 @@ function CampaignCard() {
           variant="contained"
           text="캠페인 기부하기"
           size="large"
+          func={() => setIsOpen(true)}
         />
         <Typography sx={{ fontSize: 14 }}>모금단체</Typography>
         <Typography>마석유기견보호소</Typography>
+        <WithdrawModal isOpen={isOpen} />
       </CardContent>
     </StyledCard>
   );

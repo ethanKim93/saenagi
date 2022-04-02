@@ -23,6 +23,7 @@ export default function App() {
 
         <Route element={<Layout />}>
           <Route path="/home" element={<Home />} />
+          <Route path="/campaign/:campaignId" element={<CampaignInfo />} />
           <Route path="/campaign" element={<CampaignManagement />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/searchresult" element={<SearchResult />} />
