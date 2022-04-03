@@ -9,11 +9,27 @@ import styled from '@emotion/styled';
 import Text from '../atoms/Text';
 import { Grid } from '@mui/material';
 import WithdrawModal from './Modal/WithdrawModal';
+import DonateModal from '../organisms/Modal/DonateModal';
 
-function CampaignCard() {
+function CampaignCard(props) {
   const [isOpen, setIsOpen] = useState(false);
-
   const openWithdrawModal = () => {};
+  const {
+    id,
+    isEnd,
+    shelterName,
+    targetDonation,
+    contentImageUrl,
+    title,
+    type,
+    lastModifiedDate,
+    endDate,
+    hashtags,
+    balance,
+    dday,
+  } = props;
+
+  const targetMoney = targetDonation ? targetDonation.toLocaleString() : targetDonation;
 
   return (
     //max min 똑같은 이유, ProgressBar에 영향을 안주기위해 고정값으로 주려고..
@@ -21,10 +37,10 @@ function CampaignCard() {
       <CardContent>
         <Grid container>
           <Grid item xs={9}>
-            <StyledText className="body1" text="100,000,000원" />
+            <StyledText className="body1" text={`${targetMoney}` + '원'} />
           </Grid>
           <StyledGrid item xs={3}>
-            <Dday dday="15" />
+            <Dday dday={dday} />
           </StyledGrid>
         </Grid>
         {/* <Typography variant="h5" component="div">
@@ -38,13 +54,13 @@ function CampaignCard() {
             color="text.secondary"
             gutterBottom
           >
-            50,000,000원
+            {balance}원
           </Typography>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            2022.03.05~2022.04.30까지
+            {lastModifiedDate} ~ {endDate}까지
           </Typography>
         </RightContainer>
-        <UserButton
+        {/* <UserButton
           type="submit"
           fullWidth
           variant="contained"
@@ -54,7 +70,11 @@ function CampaignCard() {
         />
         <Typography sx={{ fontSize: 14 }}>모금단체</Typography>
         <Typography>마석유기견보호소</Typography>
+      /> */}
         <WithdrawModal isOpen={isOpen} />
+        <DonateModal />
+        <Typography sx={{ fontSize: 14 }}>모금단체</Typography>
+        <Typography>{shelterName}</Typography>
       </CardContent>
     </StyledCard>
   );
